@@ -1,8 +1,13 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var upload = require('express-fileupload');
 
-var routes = require('./routes/index');
+var index = require('./routes/index');
+var downloads = require('./routes/downloads');
+var questions = require('./routes/questions');
+var profile = require('./routes/profile.js');
+var contribute = require('./routes/contribute');
 
 var app = express();
 
@@ -14,10 +19,15 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(upload({useTempFiles : true, tempFileDir : '/tmp/'}));
 
 
 //routes
-app.use('/', routes);
+app.use('/', index);
+app.use('/downloads',downloads);
+app.use('/questions',questions);
+app.use('/profile',profile);
+app.use('/contribute',contribute);
 
 
 /// catch 404 and forwarding to error handler
