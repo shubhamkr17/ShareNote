@@ -10,14 +10,14 @@ router.get('/', function(req, res) {
   debug("Loading download page!");
 
   let queries = [
-    Document.find({}),
+    Document.find({$or:[{branchCode:req.query.branchCode},{courseCode:req.query.courseCode}]}),
     Branch.find({})
   ];
 
   Promise.all(queries)
   .then(results=>{
       res.render('downloads',{
-        title:'Downlaods',
+        title:'Downloads',
         documents:results[0],
         branches:results[1]
       });

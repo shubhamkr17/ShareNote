@@ -212,7 +212,7 @@ header .navbar.navbar-light .nav-link.active {
 .feature-destination .img-bg, .slider-wrap .img-bg {
   margin-bottom: 30px;
   display: block;
-  height: 300px;
+  height: 200px;
   position: relative;
   top: 0;
   -webkit-transition: .2s all ease;
