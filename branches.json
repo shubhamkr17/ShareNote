@@ -1,0 +1,28 @@
+[{
+    "branchName":"Computer Science and Engineering",
+    "branchCode":"CS"
+},
+{
+    "branchName":"Electrical and Electronics Engineering",
+    "branchCode":"EE"
+},
+{
+    "branchName":"Electrical and Communication Engineering",
+    "branchCode":"EL"
+},
+{
+    "branchName":"Mechanical Engineering",
+    "branchCode":"ME"
+},
+{
+    "branchName":"Civil Engineering",
+    "branchCode":"CE"
+},
+{
+    "branchName":"Metallurgical and Materials Engineering",
+    "branchCode":"MT"
+},
+{
+    "branchName":"Manufacturing Engineering",
+    "branchCode":"PR"
+}]

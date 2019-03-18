@@ -5,7 +5,6 @@ var upload = require('express-fileupload');
 
 var index = require('./routes/index');
 var downloads = require('./routes/downloads');
-var questions = require('./routes/questions');
 var profile = require('./routes/profile.js');
 var contribute = require('./routes/contribute');
 
@@ -25,9 +24,19 @@ app.use(upload({useTempFiles : true, tempFileDir : '/tmp/'}));
 //routes
 app.use('/', index);
 app.use('/downloads',downloads);
-app.use('/questions',questions);
 app.use('/profile',profile);
 app.use('/contribute',contribute);
+
+var Course = require('./models/course');
+app.get('/api/courses',function(req,res,next){
+    //console.log("branch code",req.query.branchCode);
+    Course.find({courseCode: {$regex: "^"+req.query.branchCode}},function(err,courses){
+        if(err)
+            res.render('error',{err:err});
+        else
+            res.json(courses);
+    });
+});
 
 
 /// catch 404 and forwarding to error handler
