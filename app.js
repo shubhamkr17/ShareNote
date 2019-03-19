@@ -7,6 +7,7 @@ var index = require('./routes/index');
 var downloads = require('./routes/downloads');
 var profile = require('./routes/profile.js');
 var contribute = require('./routes/contribute');
+var contact = require('./routes/contact');
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use('/', index);
 app.use('/downloads',downloads);
 app.use('/profile',profile);
 app.use('/contribute',contribute);
+app.use('/contact',contact);
 
 var Course = require('./models/course');
 app.get('/api/courses',function(req,res,next){
@@ -35,6 +37,14 @@ app.get('/api/courses',function(req,res,next){
             res.render('error',{err:err});
         else
             res.json(courses);
+    });
+});
+
+app.get('/api/allcourses',function(req,res,next){
+    Course.find({},(err,courses)=>{
+        if(err)
+            throw err;
+        res.json(courses);
     });
 });
 

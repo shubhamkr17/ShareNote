@@ -78,7 +78,7 @@
                 <a class="nav-link" href="/profile">Profile</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link" href="/contact">Contact</a>
               </li>
             </ul>
             
@@ -110,7 +110,6 @@
               <div class="form-group">
                 <label for="sel2" style="color: #d6d5ff">Course:</label>
                 <select class="form-control" id="sel2">
-                    <option>------Select course------</option>
                 </select>
               </div>
               <button onclick="query()" class="btn btn-primary">Submit</button>
@@ -386,9 +385,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     
     </script>
     <script>
+      var branches = ['CS','EE','EL','ME','MT','CE','PR'];
       function query(){
         let selected_course = $("#sel2").val();
-        window.location.href = "/downloads?courseCode="+selected_course;
+        if(selected_course)
+            window.location.href = "/downloads?courseCode="+selected_course;
       }
 
     
