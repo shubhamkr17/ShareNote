@@ -16,6 +16,11 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+      #profileImage {
+          margin-top: 120px;
+      }
+    </style>
   </head>
   <body>
     
@@ -53,25 +58,50 @@
     </header>
     <!-- END header -->
 
-    <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url(images/big_image_1.jpg);">
-      <div class="container">
+    <section class="site-hero overlay" data-stellar-background-ratio="0.1" style="background-image: url(images/big_image_1.jpg);">
+      <div class="container" id="mainContainer">
         <div class="row align-items-center site-hero-inner justify-content-center" style="background:#000000a1">
-            <div class="col-md-4 text-center">
-                <img class="img-responsive" style="width:50%;border-radius: 50%;" src="images/person_2.jpg" alt="">
-                <p>Shubham Kumar</p>
-                <br><br>
-                <h3 style="color:white">34 Contributions</h3>
+            <div class="col-md-6 text-center" id="profileImage">
+                <img class="img-responsive" style="width:30%;border-radius: 50%;" src="images/person_2.jpg" alt="">
+                <h4 style="color:white">Shubham Kumar</h4>
             </div>
-            <div class="col-md-8 text-center">
-                <div class="heading">
-                  <h1 style="text-decoration: underline;">Contributions</h1>
+            <div class="col-md-12 text-center">
+              <section class="site-section" style="padding:2em 0;">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-4 pr-5" style="padding:0!important;">
+                      
+                      <h4 class="mb-3" style="color:white;font-family:cursive;">30 <br>Contributions</h4>
+                      <!-- <p class="mb-5">30 Contributions </p> -->
+                      
+                      <div class="mb-3">
+                        <a href="#" class="btn btn-primary custom-prev mr-2 mb-2"><span class="ion-android-arrow-back"></span></a> 
+                        <a href="#" class="btn btn-primary custom-next mr-2 mb-2"><span class="ion-android-arrow-forward"></span></a>
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="row">
+                        <div class="col-md-12 slider-wrap">
+                          <div class="owl-carousel owl-theme no-nav js-carousel-1">
+                            
+                            <% for(i=1;i<=10;i++){ %>
+                            <a href="#" class="img-bg" style="background-image: url('images/img_2.jpg')">
+                              <div class="text">
+                                <span class="icon ion-ios-location"></span>
+                                <h2>Document <%=i%></h2>
+                                <p>CSE</p>
+                              </div>
+                            </a>
+                            <% } %>
+          
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <% for(i=0;i<3;i++) {%>
-                <div class="mb-5 element-animate">
-                  <h1>Find your perfect place.</h1>
-                  <p>Discover &amp; connect with great places around the world.</p>
-                </div>
-                <% } %>
+              </section>
+              <!-- END section -->
 
             </div>
         </div>
