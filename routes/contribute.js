@@ -14,8 +14,9 @@ router.get('/', function(req, res,next) {
 router.post('/',async function(req,res,next){
   debug(req.body);
   debug(req.files);
+  
   if (Object.keys(req.files).length == 0) {
-    res.status(400).end('File not uploaded.');
+    return res.status(400).end('File not uploaded.');
   }
   
   debug("file",req.files.file);

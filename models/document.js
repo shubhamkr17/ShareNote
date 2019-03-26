@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 
 var documentSchema = mongoose.Schema({
     name : { type:String, required:true},
+    displayName : { type:String, required:true },
+    description : String,
     url : { type:String, required:true},
     docSize : { type:String },
     docType : { type:String },

@@ -3,11 +3,12 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var upload = require('express-fileupload');
 
-var index = require('./routes/index');
-var downloads = require('./routes/downloads');
-var profile = require('./routes/profile.js');
-var contribute = require('./routes/contribute');
-var contact = require('./routes/contact');
+var indexRouter = require('./routes/index');
+var downloadsRouter = require('./routes/downloads');
+var profileRouter = require('./routes/profile.js');
+var contributeRouter = require('./routes/contribute');
+var contactRouter = require('./routes/contact');
+var courseRouter = require('./routes/course');
 
 var app = express();
 
@@ -23,13 +24,17 @@ app.use(upload({useTempFiles : true, tempFileDir : '/tmp/'}));
 
 
 //routes
-app.use('/', index);
-app.use('/downloads',downloads);
-app.use('/profile',profile);
-app.use('/contribute',contribute);
-app.use('/contact',contact);
+app.use('/', indexRouter);
+app.use('/downloads',downloadsRouter);
+app.use('/profile',profileRouter);
+app.use('/contribute',contributeRouter);
+app.use('/contact',contactRouter);
+app.use('/courses',courseRouter)
 
-var Course = require('./models/course');
+//global models
+global.Course = require('./models/course');
+global.Branch = require('./models/branch');
+global.Document = require('./models/document');
 app.get('/api/courses',function(req,res,next){
     //console.log("branch code",req.query.branchCode);
     Course.find({courseCode: {$regex: "^"+req.query.branchCode}},function(err,courses){

@@ -1,36 +1,7 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ShareNote | <%=title%></title>
-</head>
-<body>
-    <% documents.forEach(function(document){ %>
-        <p><a href="<%=document.url%>" download><%= document.name %></a></p>
-    <% }); %> 
-</body>
-</html> -->
-
 <!doctype html>
 <html lang="en">
   <head>
-    <title><%=title%></title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Raleway" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-
-    <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
-
-    <!-- Theme Style -->
-    <link rel="stylesheet" href="css/style.css">
+    <% include partials/head %>
     <style>
       #pagin li {
         display: inline-block;
@@ -69,12 +40,6 @@
                 <a class="nav-link" href="/">Home</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link active" href="/downloads">Download</a>
-                </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/contribute">Contribute</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="/profile">Profile</a>
               </li>
               <li class="nav-item">
@@ -93,11 +58,11 @@
         <div class="row align-items-center site-hero-inner justify-content-center"  style="background:#000000a1">
           <div class="col-md-8 text-center">
 
-            <div class="mb-5 element-animate">
+            <!-- <div class="mb-5 element-animate">
               <h1>Downloads</h1>
               <br>
               <br>
-              <!-- <p>Discover &amp; connect with great places around the world.</p> -->
+              
               <div class="form-group">
                 <label for="sel_branch" style="color: #d6d5ff">Branch:</label>
                 <select class="form-control" id="sel_branch">
@@ -113,8 +78,18 @@
                 </select>
               </div>
               <button onclick="query()" class="btn btn-primary">Submit</button>
-            </div>
+            </div> -->
 
+            <div class="mb-5 element-animate">
+              <br><br>
+              <h1><%= branchName %></h1>
+              <h1><%= courseName %></h1>
+
+              <br><br>
+
+              <button class="btn btn-outline-primary" data-toggle="modal"
+              data-target="#contributeModal">Contribute to this course</button>
+            </div>
             
           </div>
         </div>
@@ -122,8 +97,44 @@
     </section>
     <!-- END section -->
 
+    <!-- Modal -->
+    <div class="modal fade" id="contributeModal" tabindex="-1" role="dialog" aria-labelledby="contributeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="contributeModalLabel">Upload a document</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" style="font-size: xx-large;">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label>Document Name</label>
+                <input type="text" name="name" class="form-control" required/>
+              </div>
+              <div class="form-group">
+                <label>Select file</label>
+                <input type="file" name="file" class="form-control-file" required/>
+              </div>
+              <div class="form-group">
+                <label>Description:</label>
+                <textarea class="form-control" name="description" rows="5"></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section class="slider-wrap site-section">
       <div class="container" style="padding-top: 12px;" id="pagination">
+
+        <% for(i=0;i<8;i++) { %>
+
         <div class="row line-content">
           <div class="col-md-3 element-animate ">
             <a href="#" class="img-bg" style="background-image: url('images/img_2.jpg')">
@@ -162,121 +173,8 @@
             </a>
           </div>
         </div>
-        <div class="row line-content">
-          <div class="col-md-3 element-animate ">
-            <a href="#" class="img-bg" style="background-image: url('images/img_4.jpg')">
-              <div class="text">
-                <span class="icon ion-images"></span>
-                <h2>Travel in India's Popular Places</h2>
-                <p>Continue reading...</p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 element-animate ">
-            <a href="#" class="img-bg" style="background-image: url('images/img_5.jpg')">
-              <div class="text">
-                <span class="icon ion-document"></span>
-                <h2>Popular Tower in France</h2>
-                <p>Continue reading...</p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 element-animate ">
-            <a href="#" class="img-bg last" style="background-image: url('images/img_6.jpg')">
-              <div class="text">
-                <span class="icon ion-document"></span>
-                <h2>Best Places in Australia</h2>
-                <p>Continue reading...</p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 element-animate ">
-            <a href="#" class="img-bg last" style="background-image: url('images/img_6.jpg')">
-              <div class="text">
-                <span class="icon ion-document"></span>
-                <h2>Best Places in Australia</h2>
-                <p>Continue reading...</p>
-              </div>
-            </a>
-          </div>
-        </div>
 
-        <div class="row line-content">
-          <div class="col-md-3 element-animate ">
-            <a href="#" class="img-bg" style="background-image: url('images/img_4.jpg')">
-              <div class="text">
-                <span class="icon ion-images"></span>
-                <h2>Travel in India's Popular Places</h2>
-                <p>Continue reading...</p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 element-animate ">
-            <a href="#" class="img-bg" style="background-image: url('images/img_5.jpg')">
-              <div class="text">
-                <span class="icon ion-document"></span>
-                <h2>Popular Tower in France</h2>
-                <p>Continue reading...</p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 element-animate ">
-            <a href="#" class="img-bg last" style="background-image: url('images/img_6.jpg')">
-              <div class="text">
-                <span class="icon ion-document"></span>
-                <h2>Best Places in Australia</h2>
-                <p>Continue reading...</p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 element-animate ">
-            <a href="#" class="img-bg last" style="background-image: url('images/img_6.jpg')">
-              <div class="text">
-                <span class="icon ion-document"></span>
-                <h2>Best Places in Australia</h2>
-                <p>Continue reading...</p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="row line-content">
-          <div class="col-md-3 element-animate ">
-            <a href="#" class="img-bg" style="background-image: url('images/img_4.jpg')">
-              <div class="text">
-                <span class="icon ion-images"></span>
-                <h2>Travel in India's Popular Places</h2>
-                <p>Continue reading...</p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 element-animate ">
-            <a href="#" class="img-bg" style="background-image: url('images/img_5.jpg')">
-              <div class="text">
-                <span class="icon ion-document"></span>
-                <h2>Popular Tower in France</h2>
-                <p>Continue reading...</p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 element-animate ">
-            <a href="#" class="img-bg last" style="background-image: url('images/img_6.jpg')">
-              <div class="text">
-                <span class="icon ion-document"></span>
-                <h2>Best Places in Australia</h2>
-                <p>Continue reading...</p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 element-animate ">
-            <a href="#" class="img-bg last" style="background-image: url('images/img_6.jpg')">
-              <div class="text">
-                <span class="icon ion-document"></span>
-                <h2>Best Places in Australia</h2>
-                <p>Continue reading...</p>
-              </div>
-            </a>
-          </div>
-        </div>
+        <% } %>
 
         
         <div class="row element-animate pt-5">
@@ -291,63 +189,7 @@
     <!-- END section -->
 
    
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-4">
-            <h3 class="mb-4">About</h3>
-            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, quod!</p>
-            <ul class="list-unstyled ">
-              <li class="d-flex"><span class="mr-3"><span class="icon ion-ios-location"></span></span><span class="">34 Street Name, City Name Here, United States</span></li>
-              <li class="d-flex"><span class="mr-3"><span class="icon ion-ios-telephone"></span></span><span class="">+1 242 4942 290</span></li>
-              <li class="d-flex"><span class="mr-3"><span class="icon ion-email"></span></span><span class="">info@yourdomain.com</span></li>
-            </ul>
-          </div>
-          <div class="col-md-2">
-            <h3 class="mb-4">Links</h3>
-            <ul class="list-unstyled ">
-              <li><a href="#">About</a></li>
-              <li><a href="#">Destination</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h3 class="mb-4">Latest Blog</h3>
-            <ul class="list-unstyled blog-entry-footer">
-              <li><a href="#">
-                <span class="post-meta">March 20, 2018</span>
-                <h3>7 Best Destination in The World</h3></a>
-              </li>
-              <li><a href="#">
-                <span class="post-meta">March 20, 2018</span>
-                <h3>4 Hour Work Week And The Rest Is Travel</h3></a>
-              </li>
-              <li><a href="#">
-                <span class="post-meta">March 20, 2018</span>
-                <h3>Why You Should Travel Today</h3></a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h3>Connect</h3>
-            <p>
-              <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
-              <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
-              <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
-            </p>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-md-7 text-center">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- END footer -->
+    <% include partials/footer %>
     
     <!-- loader -->
     <div id="loader" class="show fullscreen">
